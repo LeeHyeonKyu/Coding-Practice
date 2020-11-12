@@ -18,51 +18,20 @@ class DoublyLinkedList:
         self.tail.next = None
 
 
-    def reverse(self):
-        return_lst = []
-        curr = self.tail
-        i = 0
-        while i != self.nodeCount :
-            i += 1
-            curr = curr.prev
-            return_lst.append(curr.data)
-        
-        return return_lst
+    def traverse(self):
+        result = []
+        curr = self.head
+        while curr.next.next:
+            curr = curr.next
+            result.append(curr.data)
+        return result
 
 
-    def getAt(self, pos):
-        if pos < 0 or pos > self.nodeCount:
-            return None
-
-        if pos > self.nodeCount // 2:
-            i = 0
-            curr = self.tail
-            while i < self.nodeCount - pos + 1:
-                curr = curr.prev
-                i += 1
-        else:
-            i = 0
-            curr = self.head
-            while i < pos:
-                curr = curr.next
-                i += 1
-
-        return curr
-
-
-    def insertAfter(self, prev, newNode):
-        next = prev.next
-        newNode.prev = prev
+    def insertBefore(self, next, newNode):
+        prev = next.prev
         newNode.next = next
-        prev.next = newNode
+        newNode.prev = prev
         next.prev = newNode
+        prev.next = newNode
         self.nodeCount += 1
         return True
-
-
-    def insertAt(self, pos, newNode):
-        if pos < 1 or pos > self.nodeCount + 1:
-            return False
-
-        prev = self.getAt(pos - 1)
-        return self.insertAfter(prev, newNode)
