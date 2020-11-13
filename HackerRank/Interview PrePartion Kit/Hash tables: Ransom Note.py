@@ -1,8 +1,9 @@
+from collections import Counter
+
 def checkMagazine(magazine, note):
-    for note_str in note :
-        if not note_str in magazine :
-            print('No')
-            return
-        else :
-            magazine.remove(note_str)
-    print('Yes')
+    mag_c = Counter(magazine)
+    note_c = Counter(note)
+    if mag_c & note_c == note_c :
+        print('Yes')
+    else :
+        print('No')
