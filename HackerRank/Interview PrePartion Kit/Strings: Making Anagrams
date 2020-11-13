@@ -1,0 +1,9 @@
+from collections import Counter
+
+def makeAnagram(a, b):
+    count_a = Counter(a)
+    count_b = Counter(b)
+    union = count_a | count_b
+    inter = count_a & count_b
+    union.subtract(inter)
+    return len(list(union.elements()))
