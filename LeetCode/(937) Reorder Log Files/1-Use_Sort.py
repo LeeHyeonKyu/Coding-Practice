@@ -12,3 +12,8 @@ class Solution:
         let_lst.sort(key=lambda x : (x.split()[1:], x.split()[0]))
         
         return let_lst + dig_lst
+
+'''
+Runtime : 36 ms
+Memory : 14.3 MB
+'''
