@@ -3,3 +3,8 @@ class Solution:
         s = s.lower()
         s = re.sub('[^a-z0-9]', '', s)
         return s == s[::-1]
+
+'''
+Runtime : 40 ms
+Memory : 15.5 MB
+'''
