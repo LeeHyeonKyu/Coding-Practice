@@ -1,0 +1,11 @@
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        sums = [nums[0]]
+        for i in range(1, len(nums)) :
+            sums.append(nums[i] + (sums[i-1] if sums[i-1] > 0 else 0))
+        return max(sums)
+
+'''
+Runtime : 64 ms
+Memory : 15.2 MB
+'''
