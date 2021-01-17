@@ -1,18 +1,10 @@
 def solution(phone_book):
+    phone_book = sorted(phone_book, key=lambda x : -len(x))
     
-    answer = True
-    phone_book.sort(reverse=True)
-
-    for i in range(len(phone_book)) :
-        finder = phone_book.pop()
-        len_finder = len(str(finder))
-
+    while phone_book :
+        checker = phone_book.pop()
         for num in phone_book :
-            if str(num)[:len_finder] == str(finder) :
-                answer = False
-                break
-
-        if answer == False :
-            break
-
-    return answer
+            if num.startswith(checker) :
+                return False
+            
+    return True
