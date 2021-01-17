@@ -1,31 +1,27 @@
-def solution(answers):
+import collections
 
-    answer = []
-    length = len(answers)
-    guy1 = str('12345' * ((length//5) + 1))
-    guy2 = str('21232425' * ((length//8) + 1))
-    guy3 = str('3311224455' * ((length//10) + 1))
+def solution(answers):
+    # 학생별로 패턴 초기화
+    p1 = [1,2,3,4,5]
+    p2 = [2,1,2,3,2,4,2,5]
+    p3 = [3,3,1,1,2,2,4,4,5,5]
     
-    guy1_correct = 0
-    guy2_correct = 0
-    guy3_correct = 0
+    answer_cnt = collections.defaultdict(int)
     
+    # 순회하며 각 패턴과 일치하는지 확인 및 누적
     for idx, num in enumerate(answers) :
-        if guy1[idx] == str(num) :
-            guy1_correct += 1
-        if guy2[idx] == str(num) :
-            guy2_correct += 1
-        if guy3[idx] == str(num) :
-            guy3_correct += 1
+        if num == p1[idx % 5] :
+            answer_cnt[1] += 1
+        if num == p2[idx % 8] :
+            answer_cnt[2] += 1
+        if num == p3[idx % 10] :
+            answer_cnt[3] += 1
     
-    correct_array = (guy1_correct, guy2_correct, guy3_correct)
-    max_correct = max(correct_array)
-    
-    if guy1_correct == max_correct :
-        answer.append(1)
-    if guy2_correct == max_correct :
-        answer.append(2)
-    if guy3_correct == max_correct :
-        answer.append(3)
-    
-    return answer
+    # 누계의 최대값과 같은 사람을 결과로 반환
+    result = []
+    max_val = max(answer_cnt.values())
+    for key, val in answer_cnt.items() :
+        if val == max_val :
+            result.append(key)
+
+    return sorted(result)
