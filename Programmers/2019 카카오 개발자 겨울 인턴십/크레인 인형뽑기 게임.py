@@ -1,28 +1,23 @@
 def solution(board, moves):
     stack = []
-    n_width = len(board)
-    cnt = 0
-
-    for i in moves :
+    answer = 0
+    N = len(board)
+    
+    for move in moves :
+        move -= 1
         for line in board :
-            pickup = line[i-1]
-            if pickup != 0 :
-                line[i-1] = 0
+            pick_up = line[move]
+            if pick_up != 0 :
+                line[move] = 0
                 break
-                pass
-            pass
-
-        if pickup != 0:
-            stack.append(pickup)
-            pass
-
+        
+        if pick_up != 0 :
+            stack.append(pick_up)
+        
         if len(stack) >= 2 :
             if stack[-1] == stack[-2] :
                 stack.pop()
                 stack.pop()
-                cnt += 2
-                pass
-            pass
-        pass
-
-    return cnt
+                answer += 2
+                
+    return answer
