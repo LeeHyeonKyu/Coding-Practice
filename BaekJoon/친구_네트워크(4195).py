@@ -1,36 +1,34 @@
-import sys
-
-def find(x):
-    if x == parent[x]:
-        return x
+def find(node):
+    if node == parent[node]:
+        p_node = node
     else:
-        p = find(parent[x])
-        parent[x] = p
-        return parent[x]
+        p_node = find(parent[node])
+        parent[node] = p_node
+    return p_node
 
 def union(x, y):
     x = find(x)
     y = find(y)
-
     if x != y:
         parent[y] = x
-        number[x] += number[y]
+        nums[x] += nums[y]
 
 test_case = int(input())
 
 for _ in range(test_case):
-    parent = dict()
-    number = dict ()
+    parent = {}
+    nums = {}
+
     f = int(input())
     for _ in range(f):
         x, y = input().split()
+
         if x not in parent:
             parent[x] = x
-            number[x] = 1
+            nums[x] = 1
         if y not in parent:
             parent[y] = y
-            number[y] = 1
-        
-        union(x, y)
+            nums[y] = 1
 
-        print(number[find(x)])
+        union(x, y)
+        print(nums[find(x)])

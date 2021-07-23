@@ -1,13 +1,12 @@
 import sys
-import heapq
 
 N = int(sys.stdin.readline())
-heap = []
+lst = [0] * 10001
 
 for _ in range(N):
     num = int(sys.stdin.readline())
-    heapq.heappush(heap, num)
+    lst[num] += 1
 
-while heap:
-    num = heapq.heappop(heap)
-    print(num)
+for idx in range(10001):
+    for _ in range(lst[idx]):
+        print(idx)
