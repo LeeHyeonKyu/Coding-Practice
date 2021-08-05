@@ -6,3 +6,4 @@ def main():
 
 num_test_case = int(input())
 N = int(input())
+print(main(N))
