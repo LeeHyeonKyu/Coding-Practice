@@ -61,8 +61,6 @@ def postorder(node, lst):
         lst.append(node.name)
     return ''.join(lst)
     
-print('')
-print()
 print(preorder(tree.nodes['A'], []))
 print(inorder(tree.nodes['A'], []))
 print(postorder(tree.nodes['A'], []))
