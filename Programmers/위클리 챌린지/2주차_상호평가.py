@@ -1,13 +1,23 @@
+from collections import defaultdict
+
 def solution(scores):
+    dic = defaultdict(list)
     answer = []
-    for idx, score in enumerate(scores):
-        wo_score = score[:idx] + score[idx+1:]
-        num_student = len(wo_score)
-        sum_score = sum(wo_score)
-        if score[idx] < max(wo_score) and score[idx] > min(wo_score):
-            num_student += 1
-            sum_score += score[idx]
-        student_score = sum_score / num_student
+    
+    for i, lst in enumerate(scores):
+        for j, score in enumerate(lst):
+            if i == j:
+                pass
+            else:
+                dic[j].append(score)
+
+    for student in sorted(dic.keys()):
+        score = dic[student]
+        self_score = scores[student][student]
+        if self_score <= max(score) and self_score >= min(score):
+            student_score = (sum(score) + self_score) / (len(score) + 1)
+        else:
+            student_score = sum(score) / len(score)
 
         if student_score >= 90:
             answer.append('A')
