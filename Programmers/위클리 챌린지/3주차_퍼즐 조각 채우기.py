@@ -3,7 +3,4 @@ def solution(game_board, table):
         pass
     for _ in table:
         pass
-
-
-
     return
