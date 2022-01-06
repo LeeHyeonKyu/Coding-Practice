@@ -9,4 +9,5 @@ def solution(land):
             for num_idx, num in enumerate(land[row_idx]):
                 if prev_num_idx != num_idx:
                     stack.append((val+num, row_idx+1, num_idx))
+    
     return answer
