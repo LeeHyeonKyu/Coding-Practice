@@ -5,4 +5,5 @@ def solution(n):
             answer += 1
         elif i % 2 == 1 and n % i == 0 and sum(range(1, i+1)) <= n:
             answer += 1
+            
     return answer
