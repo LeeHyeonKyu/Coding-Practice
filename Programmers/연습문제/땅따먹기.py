@@ -1,13 +1,17 @@
 def solution(land):
-    answer = 0
-    stack = [(0, 0, 5)]
-    while stack:
-        val, row_idx, prev_num_idx = stack.pop()
-        if row_idx == len(land):
-            answer = max(answer, val)
-        else:
-            for num_idx, num in enumerate(land[row_idx]):
-                if prev_num_idx != num_idx:
-                    stack.append((val+num, row_idx+1, num_idx))
+    answer = []
+    length = len(land)
     
-    return answer
+    def dfs(row_idx, prev_idx, val):
+        if row_idx == length:
+            return val
+        
+        result = val
+        for idx, tmp_val in enumerate(land[row_idx]):
+            if idx != prev_idx:
+                result = max(dfs(row_idx+1, idx, val+tmp_val), result)
+        return result
+    
+    return dfs(0, 5, 0)
+
+solution([[1,2,3,5],[5,6,7,8]])
