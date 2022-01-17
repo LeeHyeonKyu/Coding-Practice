@@ -1,17 +1,12 @@
-def solution(land):
-    answer = []
-    length = len(land)
-    
-    def dfs(row_idx, prev_idx, val):
-        if row_idx == length:
-            return val
-        
-        result = val
-        for idx, tmp_val in enumerate(land[row_idx]):
-            if idx != prev_idx:
-                result = max(dfs(row_idx+1, idx, val+tmp_val), result)
-        return result
-    
-    return dfs(0, 5, 0)
+from collections import defaultdict
 
-solution([[1,2,3,5],[5,6,7,8]])
+def solution(land):
+    lst = [(5, 0)]
+    for line in land:
+        val_dict = defaultdict(int)
+        for idx, val in enumerate(line):
+            for prev_idx, prev_val in lst:
+                if idx != prev_idx:
+                    val_dict[idx] = max(val_dict[idx], prev_val+val)
+        lst = sorted(list(val_dict.items()), key=lambda x: -x[1])[:2]
+    return lst[0][1]
