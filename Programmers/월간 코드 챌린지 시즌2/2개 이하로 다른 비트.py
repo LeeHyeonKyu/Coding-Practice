@@ -14,7 +14,10 @@ def bit_op(num):
         else:
             break
     result = bin(num+1)
-    result = result[:-cnt] + '00' + ('1' * (cnt-2))
+    if cnt > 3:
+        result = result[:-cnt] + '00' + ('1' * (cnt-2))
+    else:
+        result = result[:-cnt] + '0' + ('1' * (cnt-1))
     return int(result, 2)
 
 def solution(numbers):
@@ -22,5 +25,3 @@ def solution(numbers):
     for num in numbers:
         answer.append(bit_op(num))
     return answer
-
-solution([7])
