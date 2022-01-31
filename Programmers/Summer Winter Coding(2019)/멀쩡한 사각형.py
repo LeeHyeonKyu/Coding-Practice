@@ -5,4 +5,5 @@ def solution(w, h):
     while r != 0:
         x += 1
         q, r = divmod(h*x, w)
+        
     return (w*h) - (w*ceil(h/w))
