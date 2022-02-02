@@ -11,7 +11,6 @@ def bit_op(num):
         else:
             break
     result = bin(num+1)[2:]
-    
     if len(result) == len(bit):
         result = result[:-cnt] + '00' + ('1' * (cnt-2))
     else:
