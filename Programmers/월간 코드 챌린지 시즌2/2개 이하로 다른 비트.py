@@ -3,7 +3,6 @@ def bit_op(num):
     for i in range(1, min(3, len(bit))+1):
         if bit[-i] == '0':
             return num+1
-    
     cnt = 0
     for i in bit[::-1]:
         if i == '1':
