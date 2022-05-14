@@ -1,9 +1,16 @@
-from math import ceil
+from math import ceil, floor
 
 def solution(w, h):
-    x, r = 0, -1
-    while r != 0:
-        x += 1
-        q, r = divmod(h*x, w)
-        
-    return (w*h) - (w*ceil(h/w))
+    tot = w * h
+    inclination = h/w
+    cutted = 0
+    prev = 0
+    for i in range(1, w+1):
+        now = inclination * i
+        cutted += ceil(now) - floor(prev)
+        prev = now
+        if int(now) == now:
+            cutted *= w/i
+            break
+    
+    return tot - cutted
