@@ -11,15 +11,18 @@ def solution(N, number):
         
         for idx, unit in enumerate(formula):
             if unit in operators:
-                tmp_result = eval(''.join(formula[idx-1:idx+2]))
-                result = calc_formula(formula[:idx-1] + [str(tmp_result)] + formula[idx+2:], results)
-                results |= result
+                try:
+                    tmp_result = eval(''.join(formula[idx-1:idx+2]))
+                    result = calc_formula(formula[:idx-1] + [str(tmp_result)] + formula[idx+2:], results)
+                    results |= result
+                except:
+                    pass
         return results
     
     while queue:
         formula, step = queue.popleft()
         results = calc_formula(formula, set())
-        if number in results:
+        if str(number) in results:
             return step
         
         if step <= 8:
@@ -30,4 +33,4 @@ def solution(N, number):
         else:
             return -1
 
-solution(5, 12)
+print(solution(5, 12))
