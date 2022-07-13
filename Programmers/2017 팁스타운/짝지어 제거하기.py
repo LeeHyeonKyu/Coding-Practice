@@ -1,18 +1,17 @@
-from collections import defaultdict
-
 def solution(s):
-    char_dict = defaultdict(list)
-    flags = [False] * len(s)
-    for idx, char in enumerate(s):
-        if len(char_dict[char]) > 0:
-            front = char_dict[char].pop()
-            if all(flags[front+1:idx]):
-                flags[front] = True
-                flags[idx] = True
+    flag = True
+    while flag:
+        stack = []
+        for char in s:
+            if len(stack) > 0 and char == stack[-1]:
+                stack.pop()
             else:
-                char_dict[char].append(front)
-                char_dict[char].append(idx)
+                stack.append(char)
+        
+        if len(stack) == len(s):
+            flag = False
+        elif len(stack) == 0:
+            return 1
         else:
-            char_dict[char].append(idx)
-    
-    return 1 if all(flags) else 0
+            s = ''.join(stack)
+    return 0
